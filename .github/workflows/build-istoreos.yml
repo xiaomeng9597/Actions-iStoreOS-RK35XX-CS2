@@ -23,6 +23,7 @@ env:
   UPLOAD_RELEASE: true
   TZ: Asia/Shanghai
   GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+  UPAPI_TOKEN: ${{ secrets.UP_TOKEN }}
 
 jobs:
   build:
@@ -86,6 +87,7 @@ jobs:
       working-directory: /mnt/workdir
       run: |
         df -hT $PWD
+        echo "输出：${{ env.UPAPI_TOKEN }}"
         git clone $REPO_URL -b ${{ matrix.REPO_BRANCH }} openwrt
         ln -sf /mnt/workdir/openwrt $GITHUB_WORKSPACE/openwrt
 
